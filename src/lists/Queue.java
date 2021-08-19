@@ -1,10 +1,12 @@
-public class Stack<DataType> {
+package lists;
+
+public class Queue<DataType> {
     //attributes
     private Node head;
     private int length;
 
     //contructors
-    public Stack() {
+    public Queue() {
         head = new Node(null);
         length = 0;
     }
@@ -16,14 +18,15 @@ public class Stack<DataType> {
         length++;
     }
 
-    public DataType pop() {
-        DataType data = (DataType) getNode(length - 1).getData();
-        getNode(--length - 1).setLink(null);
+    public DataType poll() {
+        DataType data = (DataType) getNode(0).getData();
+        head.setLink(getNode(1));
+        length--;
         return data;
     }
 
     public DataType peek() {
-        return (DataType) getNode(length - 1).getData();
+        return (DataType) getNode(0).getData();
     }
 
     private Node getNode(int index) {
@@ -38,7 +41,7 @@ public class Stack<DataType> {
 
     public String toString() {
         Node node = head;
-        String string = "Stack: ";
+        String string = "Queue: ";
         for (int index = 0; index < length; index++) {
             node = node.getLink();
             string += (node.getData() + " ");

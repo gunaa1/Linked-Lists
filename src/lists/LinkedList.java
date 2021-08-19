@@ -1,3 +1,5 @@
+package lists;
+
 public class LinkedList<DataType> {
     //attributes
     private Node head;

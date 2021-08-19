@@ -1,3 +1,5 @@
+package lists;
+
 public class Node<DataType> {
     //attributes
     private DataType data;
