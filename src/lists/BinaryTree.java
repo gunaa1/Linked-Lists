@@ -35,19 +35,60 @@ public class BinaryTree<Type> {
         return node;
     }
 
+    //printing out elements in the binary tree from least to greatest
     public void inOrderTraversal() {
         inOrderTraversalUtil(root);
     }
 
     private void inOrderTraversalUtil(BNode node) {
-        if (node.getLeft() != null) {
-            inOrderTraversalUtil(node.getLeft());
-        }
         if (node != null) {
-            System.out.println(node.getData());
-        }
-        if (node.getRight() != null) {
+            inOrderTraversalUtil(node.getLeft());
+            System.out.println(node.getData() + " ");
             inOrderTraversalUtil(node.getRight());
         }
+    }
+
+    //printing out the element in the binary tree from greatest to least
+    public void inReverseOrderTraversal() {
+        inReverseOrderTraversalUtil(root);
+    }
+
+    private void inReverseOrderTraversalUtil(BNode node) {
+        if (node != null) {
+            inReverseOrderTraversalUtil(node.getRight());
+            System.out.println(node.getData() + " ");
+            inReverseOrderTraversalUtil(node.getLeft());
+        }
+    }
+
+    //printing the elements in the binary tree in the order left - right - current
+    public void inPreorder() {
+        inPreorderUtil(root);
+    }
+
+    private void inPreorderUtil(BNode node) {
+        if (node != null) {
+            System.out.println(node.getData() + " ");
+            inPreorderUtil(node.getLeft());
+            inPreorderUtil(node.getRight());
+        }
+    }
+
+    //printing the elements in the binary tree in the order current - left - right
+    public void inPostorder() {
+        inPostorderUtil(root);
+    }
+
+    private void inPostorderUtil(BNode node) {
+        if (node != null) {
+            inPostorderUtil(node.getLeft());
+            inPostorderUtil(node.getRight());
+            System.out.println(node.getData() + " ");
+        }
+    }
+
+    //default print method
+    public void print() {
+        inOrderTraversalUtil(root);
     }
 }

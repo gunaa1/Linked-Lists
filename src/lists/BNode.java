@@ -1,16 +1,18 @@
 package lists;
 
-public class BNode<Type> {
+public class BNode<DataType> {
     //attributes
-    private BNode left; BNode right;
-    private Type data;
+    private DataType data;
+    private BNode left, right;
 
     //contructor
-    public BNode(Type data) {
+    public BNode(DataType data) {
         this.data = data;
+        this.left = null;
+        this.right = null;
     }
 
-    //accessors & mutators
+    //getters & setters
     public BNode getLeft() {
         return this.left;
     }
@@ -27,11 +29,11 @@ public class BNode<Type> {
         this.right = right;
     }
 
-    public Type getData () {
+    public DataType getData() {
         return this.data;
     }
 
-    public void setData(Type data) {
+    public void setData(DataType data) {
         this.data = data;
     }
 }

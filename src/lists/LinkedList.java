@@ -2,45 +2,68 @@ package lists;
 
 public class LinkedList<DataType> {
     //attributes
-    private Node head;
+    private Node head, tail;
     private int length;
 
     public LinkedList() {
-        head = new Node(null);
+        head = null;
+        tail = null;
         length = 0;
+    }
+
+    //getters and setters
+    public int getLength() {
+        return this.length;
     }
 
     //methods
     public void add(DataType object) {
         Node newNode = new Node(object);
-        getNode(length - 1).setLink(newNode);
+        if (head == null) {
+            head = newNode;
+        }
+        else {
+            tail.setNextLink(newNode);
+            newNode.setPrevLink(tail);
+        }
+        tail = newNode;
         length++;
     }
 
-    public void displayList() {
-        Node latest = head;
-        while (latest.getLink() != null) {
-            latest = latest.getLink();
-            System.out.println(latest.getData());
-        }
-    }
-
-    public int getLength() {
-        return this.length;
-    }
-
-    private Node getNode(int index) {
-        Node latest = head;
-        if (index < length) {
-            for (int i = 0; i <= index; i++) {
-                latest = latest.getLink();
-            }
-            return latest;
-        }
-        return null;
-    }
-
+    //gets the node at any index and does so efficiently based on where the node is located
     public DataType get(int index) {
-        return (DataType) getNode(index).getData();
+        if (index >= length) return null;
+        if (index < length / 2)
+            return (DataType) getNodeFromHead(index).getData();
+        return (DataType) getNodeFromTail(index).getData();
+    }
+
+    private Node getNodeFromHead(int index) {
+        Node latest = head;
+        for (int i = 0; i <= index; i++) {
+            latest = latest.getNextLink();
+        }
+        return latest;
+    }
+
+    private Node getNodeFromTail(int index) {
+        Node latest = tail;
+        for (int i = 0; i < length - index - 1; i++) {
+            latest = latest.getPrevLink();
+        }
+        return latest;
+    }
+
+    public boolean isEmpty() {
+        return (head == null);
+    }
+
+    //default print method
+    public void print() {
+        Node latest = head;
+        while (latest.getNextLink() != null) {
+            System.out.println(latest.getData() + " ");
+            latest = latest.getNextLink();
+        }
     }
 }

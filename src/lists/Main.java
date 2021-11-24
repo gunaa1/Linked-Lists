@@ -13,11 +13,5 @@ public class Main {
         // System.out.println(q);
         // System.out.println(q.poll());
         // System.out.println(q);
-
-        Thread t = Thread.currentThread();
-
-        BinaryTree testTree = new BinaryTree<Integer>(3);
-        testTree.add(1); testTree.add(134); testTree.add(9);
-        testTree.inOrderTraversal();
     }
 }
