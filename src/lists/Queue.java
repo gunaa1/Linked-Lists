@@ -1,10 +1,10 @@
 package lists;
 
-import lists.nodes.Node;
+import lists.nodes.DNode;
 
 public class Queue<DataType> {
     //attributes
-    private Node head, tail;
+    private DNode head, tail;
 
     //contructors
     public Queue() {
@@ -14,7 +14,7 @@ public class Queue<DataType> {
 
     //methods
     public void add(DataType data) {
-        Node newNode = new Node(data);
+        DNode newNode = new DNode(data);
         if (head == null) {
             head = newNode;
         }
@@ -38,7 +38,7 @@ public class Queue<DataType> {
     }
 
     public String toString() {
-        Node node = head;
+        DNode node = head;
         String string = "Queue: ";
         while (node != null) {
             string += node.getData() + " ";

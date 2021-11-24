@@ -1,13 +1,13 @@
 package lists;
 
-import lists.nodes.Node;
+import lists.nodes.DNode;
 
-public class LinkedList<DataType> {
+public class DoublyLinkedList<DataType> {
     //attributes
-    private Node head, tail;
+    private DNode head, tail;
     private int length;
 
-    public LinkedList() {
+    public DoublyLinkedList() {
         head = null;
         tail = null;
         length = 0;
@@ -20,7 +20,7 @@ public class LinkedList<DataType> {
 
     //methods
     public void add(DataType object) {
-        Node newNode = new Node(object);
+        DNode newNode = new DNode(object);
         if (head == null) {
             head = newNode;
         }
@@ -40,16 +40,16 @@ public class LinkedList<DataType> {
         return (DataType) getNodeFromTail(index).getData();
     }
 
-    private Node getNodeFromHead(int index) {
-        Node latest = head;
+    private DNode getNodeFromHead(int index) {
+        DNode latest = head;
         for (int i = 0; i <= index; i++) {
             latest = latest.getNextLink();
         }
         return latest;
     }
 
-    private Node getNodeFromTail(int index) {
-        Node latest = tail;
+    private DNode getNodeFromTail(int index) {
+        DNode latest = tail;
         for (int i = 0; i < length - index - 1; i++) {
             latest = latest.getPrevLink();
         }
@@ -63,7 +63,7 @@ public class LinkedList<DataType> {
     //default print method
     public String toString() {
         String toPrint = "";
-        Node latest = head;
+        DNode latest = head;
         while (latest.getNextLink() != null) {
             toPrint += latest.getData() + " ";
             latest = latest.getNextLink();

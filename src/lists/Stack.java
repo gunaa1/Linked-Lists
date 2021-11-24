@@ -18,13 +18,13 @@ public class Stack<DataType> {
         Node newNode = new Node(object);
         if (head != null) {
             newNode.setNextLink(head);
-            head.setPrevLink(newNode);
         }
         head = newNode;
         length++;
     }
 
     public DataType pop() {
+        if (head == null) return null;
         DataType data = (DataType) head.getData();
         head = head.getNextLink();
         return data;

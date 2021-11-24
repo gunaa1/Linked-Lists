@@ -1,23 +1,32 @@
 package lists.nodes;
 
-public class Node<DataType> {
+public class DNode<DataType> {
     //attributes
     private DataType data;
-    private Node nextLink;
+    private DNode nextLink, prevLink;
 
     //constructor
-    public Node (DataType data) {
+    public DNode (DataType data) {
         this.data = data;
         this.nextLink = null;
+        this.prevLink = null;
     }
 
     //setters and getters
-    public Node getNextLink() {
+    public DNode getNextLink() {
         return this.nextLink;
     }
 
-    public void setNextLink(Node node) {
+    public DNode getPrevLink() {
+        return this.prevLink;
+    }
+
+    public void setNextLink(DNode node) {
         this.nextLink = node;
+    }
+
+    public void setPrevLink(DNode node) {
+        this.prevLink = node;
     }
 
     public DataType getData() {
