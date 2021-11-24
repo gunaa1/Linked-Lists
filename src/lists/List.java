@@ -1,33 +1,41 @@
 package lists;
 
-import lists.nodes.Node;
+import lists.nodes.SNode;
 
-public abstract class List<DataType> {
+public abstract class List {
     //attributes
-    protected Node head;
-    protected String toPrint;
-    protected int length;
+    protected SNode head, tail;
+    protected int nodes;
 
     //constructor
     public List() {
         head = null;
-        toPrint = "";
-        length = 0;
+        tail = null;
+        nodes = 0;
     }
 
     //getters and setters
-    public int getLength() {
-        return this.length;
+    public int getSize() {
+        return this.nodes;
     }
 
     //methods
+    protected SNode getNodeFromHead(int index) {
+        SNode latest = head;
+        for (int i = 0; i <= index; i++) {
+            latest = latest.getNextLink();
+        }
+        return latest;
+    }
+    
     public boolean isEmpty() {
-        return (head == null);
+        return ((this.nodes == 0) ? true: false);
     }
 
     //default print method
     public String toString() {
-        Node latest = head;
+        String toPrint = "Linked List: ";
+        SNode latest = head;
         while (latest.getNextLink() != null) {
             toPrint += latest.getData() + " ";
             latest = latest.getNextLink();

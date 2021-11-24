@@ -1,17 +1,23 @@
 package lists;
 
-import lists.nodes.Node;
+import lists.nodes.SNode;
 
 public class LinkedList<DataType> extends List {
-    //constructor
-    public LinkedList() {
-        head = null;
-        tail = null;
-        length = 0;
+    //methods
+    public void add(DataType object) {
+        SNode newNode = new SNode<DataType>(object);
+        if (super.head == null) {
+            super.head = newNode;
+        }
+        else {
+            super.tail.setNextLink(newNode);
+        }
+        super.tail = newNode;
+        super.nodes++;
     }
 
-    //getters and setters
-    public int getLength() {
-        return this.length;
+    public DataType get(int index) {
+        if (index >= super.nodes) return null;
+        return (DataType) getNodeFromHead(index).getData();
     }
 }
