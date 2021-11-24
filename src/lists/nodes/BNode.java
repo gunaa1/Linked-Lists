@@ -1,4 +1,4 @@
-package lists;
+package lists.nodes;
 
 public class BNode<DataType> {
     //attributes

@@ -1,5 +1,7 @@
 package lists;
 
+import lists.nodes.Node;
+
 public class LinkedList<DataType> {
     //attributes
     private Node head, tail;

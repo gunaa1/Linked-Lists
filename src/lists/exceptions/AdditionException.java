@@ -1,4 +1,4 @@
-package lists;
+package lists.exceptions;
 
 public class AdditionException extends Exception {
     //contructor

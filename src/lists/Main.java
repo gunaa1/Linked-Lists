@@ -1,7 +1,5 @@
 package lists;
 
-import java.lang.Thread;
-
 public class Main {
     public static void main (String[] args) {
         //can test any code here:
