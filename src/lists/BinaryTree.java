@@ -5,18 +5,25 @@ import lists.nodes.BNode;
 
 public class BinaryTree<DataType> {
     //attributes
-    BNode root;
+    private BNode root;
     private String str;
+    private int nodes;
 
     //constructor
     public BinaryTree(DataType data) {
         root = new BNode<DataType>(data);
     }
 
+    //getters and setters
+    public int getSize() {
+        return this.nodes;
+    }
+
     //methods
     public void add(DataType data) {
         try {
             addUtil(data, this.root);
+            this.nodes++;
         } catch (AdditionException error) {
             System.out.println("Duplicate Element found!");
         }
