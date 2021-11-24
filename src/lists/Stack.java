@@ -7,43 +7,43 @@ public class Stack<DataType> {
 
     //contructors
     public Stack() {
-        head = new Node(null);
+        head = null;
         length = 0;
     }
 
     //methods
     public void add(DataType object) {
         Node newNode = new Node(object);
-        getNode(length - 1).setLink(newNode);
+        if (head != null) {
+            newNode.setNextLink(head);
+            head.setPrevLink(newNode);
+        }
+        head = newNode;
         length++;
     }
 
     public DataType pop() {
-        DataType data = (DataType) getNode(length - 1).getData();
-        getNode(--length - 1).setLink(null);
+        DataType data = (DataType) head.getData();
+        head = head.getNextLink();
         return data;
     }
 
     public DataType peek() {
-        return (DataType) getNode(length - 1).getData();
+        if (head == null) return null;
+        return ((DataType) head.getData());
     }
 
-    private Node getNode(int index) {
-        Node latest = head;
-        if (index < length) {
-            for (int i = 0; i <= index; i++) {
-                latest = latest.getLink();
-            }
-        }
-        return latest;
+    public boolean isEmpty() {
+        return (head == null);
     }
 
+    //default printing method
     public String toString() {
         Node node = head;
         String string = "Stack: ";
-        for (int index = 0; index < length; index++) {
-            node = node.getLink();
-            string += (node.getData() + " ");
+        while (node != null) {
+            string += node.getData() + " ";
+            node = node.getNextLink();
         }
         return string;
     }

@@ -59,11 +59,13 @@ public class LinkedList<DataType> {
     }
 
     //default print method
-    public void print() {
+    public String toString() {
+        String toPrint = "";
         Node latest = head;
         while (latest.getNextLink() != null) {
-            System.out.println(latest.getData() + " ");
+            toPrint += latest.getData() + " ";
             latest = latest.getNextLink();
         }
+        return toPrint;
     }
 }

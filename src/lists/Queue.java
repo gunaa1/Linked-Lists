@@ -2,49 +2,45 @@ package lists;
 
 public class Queue<DataType> {
     //attributes
-    private Node head;
-    private int length;
+    private Node head, tail;
 
     //contructors
     public Queue() {
-        head = new Node(null);
-        length = 0;
+        head = null;
+        tail = null;
     }
 
     //methods
-    public void add(DataType object) {
-        Node newNode = new Node(object);
-        getNode(length - 1).setLink(newNode);
-        length++;
+    public void add(DataType data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        }
+        else {
+            tail.setNextLink(newNode);
+            newNode.setPrevLink(tail);
+        }
+        tail = newNode;
     }
 
     public DataType poll() {
-        DataType data = (DataType) getNode(0).getData();
-        head.setLink(getNode(1));
-        length--;
+        if (head == null) return null;
+        DataType data = ((DataType) head.getData());
+        head = head.getNextLink();
         return data;
     }
 
     public DataType peek() {
-        return (DataType) getNode(0).getData();
-    }
-
-    private Node getNode(int index) {
-        Node latest = head;
-        if (index < length) {
-            for (int i = 0; i <= index; i++) {
-                latest = latest.getLink();
-            }
-        }
-        return latest;
+        if (head == null) return null;
+        return ((DataType) head.getData());
     }
 
     public String toString() {
         Node node = head;
         String string = "Queue: ";
-        for (int index = 0; index < length; index++) {
-            node = node.getLink();
-            string += (node.getData() + " ");
+        while (node != null) {
+            string += node.getData() + " ";
+            node = node.getNextLink();
         }
         return string;
     }

@@ -1,49 +1,91 @@
 package lists;
 
-public class BinaryTree<Type> {
+import javax.xml.crypto.Data;
+
+public class BinaryTree<DataType> {
     //attributes
     BNode root;
+    private String str;
 
     //constructor
-    public BinaryTree(Type data) {
-        root = new BNode<Type>(data);
+    public BinaryTree(DataType data) {
+        root = new BNode<DataType>(data);
     }
 
     //methods
-    public void add(Type data) {
+    public void add(DataType data) {
         try {
-            addUtil(data, root);
+            addUtil(data, this.root);
         } catch (AdditionException error) {
             System.out.println("Duplicate Element found!");
         }
     }
 
-    private BNode addUtil(Type data, BNode node) throws AdditionException {
-        if (node == null) {
-            node = new BNode<Type>(data);
+    private void addUtil(DataType data, BNode root) throws AdditionException {
+        if (root == null) {
+            this.root = new BNode<DataType>(data);
         }
-        else if ((Integer) data > (Integer) node.getData()) {
-            node.setRight(addUtil(data, node.getRight()));
+        else if ((Integer) data > (Integer) root.getData()) {
+            if (root.getRight() == null) {
+                root.setRight(new BNode<DataType>(data));
+            }
+            else {
+                addUtil(data, root.getRight());
+            }
         }
-        else if ((Integer) data < (Integer) node.getData()) {
-            node.setLeft(addUtil(data, node.getLeft()));
+        else if ((Integer) data < (Integer) root.getData()) {
+            if (root.getLeft() == null) {
+                root.setLeft(new BNode<DataType>(data));
+            }
+            else {
+                addUtil(data, root.getLeft());
+            }
         }
         else {
             AdditionException error = new AdditionException("Duplicate Element");
             throw error;
         }
-        return node;
     }
+
+    //find an element in the tree
+    public BNode findByElement(DataType data) {
+        return findByElementUtil(data, this.root);
+    }
+
+    private BNode findByElementUtil(DataType data, BNode root) {
+        if (root == null) {
+            return null;
+        }
+        else if (root.getData() == data) {
+            return root;
+        }
+        else if ((Integer) data > (Integer) root.getData()) {
+            return findByElementUtil(data, root.getRight());
+        }
+        else {
+            return findByElementUtil(data, root.getLeft());
+        }
+    }
+
+    //delete an element - work in progress
+    // public BNode deleteNode(BNode node) {
+    //     if (node.getLeft() == null && node.getRight() == null) {
+
+    //     }
+    // }
+
 
     //printing out elements in the binary tree from least to greatest
     public void inOrderTraversal() {
+        str = "";
         inOrderTraversalUtil(root);
+        System.out.println(str);
     }
 
     private void inOrderTraversalUtil(BNode node) {
         if (node != null) {
             inOrderTraversalUtil(node.getLeft());
-            System.out.println(node.getData() + " ");
+            str += node.getData() + " ";
             inOrderTraversalUtil(node.getRight());
         }
     }
@@ -88,7 +130,9 @@ public class BinaryTree<Type> {
     }
 
     //default print method
-    public void print() {
+    public String toString() {
+        str = "";
         inOrderTraversalUtil(root);
+        return str;
     }
 }
