@@ -1,13 +1,12 @@
 package lists.nodes;
 
-public class BNode<DataType> {
+public class BNode<DataType> extends Node{
     //attributes
-    private DataType data;
     private BNode left, right;
 
     //contructor
     public BNode(DataType data) {
-        this.data = data;
+        super(data);
         this.left = null;
         this.right = null;
     }
@@ -27,13 +26,5 @@ public class BNode<DataType> {
 
     public void setRight(BNode right) {
         this.right = right;
-    }
-
-    public DataType getData() {
-        return this.data;
-    }
-
-    public void setData(DataType data) {
-        this.data = data;
     }
 }

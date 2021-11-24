@@ -1,25 +1,14 @@
 package lists.nodes;
 
-public class Node<DataType> {
+public abstract class Node<DataType> {
     //attributes
-    private DataType data;
-    private Node nextLink;
+    protected DataType data;
 
-    //constructor
-    public Node (DataType data) {
+    public Node(DataType data) {
         this.data = data;
-        this.nextLink = null;
     }
 
-    //setters and getters
-    public Node getNextLink() {
-        return this.nextLink;
-    }
-
-    public void setNextLink(Node node) {
-        this.nextLink = node;
-    }
-
+    //getters and setters
     public DataType getData() {
         return this.data;
     }

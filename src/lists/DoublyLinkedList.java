@@ -2,7 +2,7 @@ package lists;
 
 import lists.nodes.DNode;
 
-public class DoublyLinkedList<DataType> {
+public class DoublyLinkedList<DataType> extends List {
     //attributes
     private DNode head, tail;
     private int length;
@@ -54,10 +54,6 @@ public class DoublyLinkedList<DataType> {
             latest = latest.getPrevLink();
         }
         return latest;
-    }
-
-    public boolean isEmpty() {
-        return (head == null);
     }
 
     //default print method
