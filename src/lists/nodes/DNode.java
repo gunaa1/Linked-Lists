@@ -1,6 +1,6 @@
 package lists.nodes;
 
-public class DNode<DataType> extends SNode {
+public class DNode<DataType> extends SNode<DataType> {
     //attributes
     private DNode prevLink;
 

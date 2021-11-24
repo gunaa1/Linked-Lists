@@ -1,6 +1,6 @@
 package lists.nodes;
 
-public class SNode<DataType> extends Node{
+public class SNode<DataType> extends Node<DataType> {
     //attributes
     protected SNode nextLink;
 

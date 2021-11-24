@@ -2,7 +2,7 @@ package lists;
 
 import lists.nodes.SNode;
 
-public abstract class List {
+public abstract class List<DataType> {
     //attributes
     protected SNode head, tail;
     protected int nodes;
@@ -20,6 +20,18 @@ public abstract class List {
     }
 
     //methods
+    public void add(DataType data) {
+        SNode newNode = new SNode(data);
+        if (this.nodes == 0) {
+            this.head = newNode;
+        }
+        else {
+            this.tail.setNextLink(newNode);
+        }
+        this.tail = newNode;
+        this.nodes++;
+    }
+
     protected SNode getNodeFromHead(int index) {
         SNode latest = head;
         for (int i = 0; i <= index; i++) {

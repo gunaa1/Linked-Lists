@@ -1,6 +1,6 @@
 package lists.nodes;
 
-public class BNode<DataType> extends Node{
+public class BNode<DataType> extends Node<DataType> {
     //attributes
     private BNode left, right;
 

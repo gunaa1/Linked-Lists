@@ -1,32 +1,23 @@
 package lists;
 
-import lists.nodes.Node;
+import lists.nodes.SNode;
 
-public class Stack<DataType> {
-    //attributes
-    private Node head;
-    private int length;
-
-    //contructors
-    public Stack() {
-        head = null;
-        length = 0;
-    }
-
+public class Stack<DataType> extends List<DataType> {
     //methods
+    @Override
     public void add(DataType object) {
-        Node newNode = new Node(object);
-        if (head != null) {
-            newNode.setNextLink(head);
+        SNode newNode = new SNode(object);
+        if (super.head != null) {
+            newNode.setNextLink(super.head);
         }
-        head = newNode;
-        length++;
+        super.head = newNode;
     }
 
     public DataType pop() {
-        if (head == null) return null;
+        if (super.nodes == 0) return null;
         DataType data = (DataType) head.getData();
         head = head.getNextLink();
+        super.nodes--;
         return data;
     }
 
@@ -35,13 +26,10 @@ public class Stack<DataType> {
         return ((DataType) head.getData());
     }
 
-    public boolean isEmpty() {
-        return (head == null);
-    }
-
     //default printing method
+    @Override
     public String toString() {
-        Node node = head;
+        SNode node = head;
         String string = "Stack: ";
         while (node != null) {
             string += node.getData() + " ";
