@@ -4,6 +4,6 @@ Recently, I was learning about various different data structures. Through the be
 
 ## To access the code:
 
-Download the code by pressing on "Code" and then the "Download ZIP" button.
-Extract the zip file an open the files in an IDE of your choice.
-You now have full access (in addition to viewing, you can run the code as well) to all of the code.
+1) Download the code by pressing on "Code" and then the "Download ZIP" button.
+2) Extract the zip file an open the files in an IDE of your choice.
+3) You now have full access (in addition to viewing, you can run the code as well) to all of the code.
