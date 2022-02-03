@@ -1,4 +1,4 @@
-package lists.nodes;
+package node_based.nodes;
 
 public class SNode<DataType> extends Node<DataType> {
     //attributes

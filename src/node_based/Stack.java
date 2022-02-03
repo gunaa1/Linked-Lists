@@ -1,10 +1,9 @@
-package lists;
+package node_based;
 
-import lists.nodes.SNode;
+import node_based.nodes.SNode;
 
 public class Stack<DataType> extends List<DataType> {
     //methods
-    @Override
     public void add(DataType object) {
         SNode newNode = new SNode(object);
         if (super.head != null) {
@@ -14,10 +13,10 @@ public class Stack<DataType> extends List<DataType> {
     }
 
     public DataType pop() {
-        if (super.nodes == 0) return null;
+        if (super.size == 0) return null;
         DataType data = (DataType) head.getData();
         head = head.getNextLink();
-        super.nodes--;
+        super.size--;
         return data;
     }
 
