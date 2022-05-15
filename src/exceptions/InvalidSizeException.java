@@ -1,8 +1,8 @@
-package array_based.exceptions;
+package exceptions;
 
 public class InvalidSizeException extends Exception {
     //constructor
     public InvalidSizeException() {
-        super("Pleas provide a valid refactor size!");
+        super("Please provide a valid refactor size!");
     }
 }

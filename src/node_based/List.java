@@ -1,38 +1,43 @@
 package node_based;
 
+
+// Imports
 import node_based.nodes.SNode;
 
+
 public abstract class List<DataType> {
-    //attributes
+    // Attributes
     protected SNode head, tail;
     protected int size;
 
-    //constructor
+
+    // Constructor
     public List() {
         this.head = null;
         this.tail = null;
         this.size = 0;
     }
 
-    //getters and setters
+    // Getters
     public int getSize() {
         return this.size;
     }
 
-    //methods
-    
+
+    // ADT Methods
     public boolean isEmpty() {
         return (this.size == 0);
     }
 
-    //default print method
+    // Default Method
     public String toString() {
         String toPrint = "Linked List: ";
         SNode latest = head;
-        while (latest.getNextLink() != null) {
-            toPrint += latest.getData() + "\t";
+        while (latest != null) {
+            toPrint += latest.getData() + " ";
             latest = latest.getNextLink();
         }
+        toPrint += "\n";
         return toPrint;
     }
 }

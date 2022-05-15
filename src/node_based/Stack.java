@@ -1,14 +1,16 @@
 package node_based;
 
+
+// Imports
 import node_based.nodes.SNode;
 
+
 public class Stack<DataType> extends List<DataType> {
-    //methods
+    // ADT Methods
     public void add(DataType object) {
         SNode newNode = new SNode(object);
-        if (super.head != null) {
+        if (super.head != null)
             newNode.setNextLink(super.head);
-        }
         super.head = newNode;
     }
 
@@ -25,7 +27,8 @@ public class Stack<DataType> extends List<DataType> {
         return ((DataType) head.getData());
     }
 
-    //default printing method
+    
+    // Default Methods
     @Override
     public String toString() {
         SNode node = head;

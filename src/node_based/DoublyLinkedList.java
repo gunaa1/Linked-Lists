@@ -1,10 +1,13 @@
 package node_based;
 
+
+// Imports
+import exceptions.ElementNotFoundException;
 import node_based.nodes.DNode;
 
-public class DoublyLinkedList<DataType> extends List<DataType> {
-    // methods
-    // adds a new data point at the end of the list
+
+public class DoublyLinkedList<DataType extends Comparable<DataType>> extends List<DataType> {
+    // ADT Methods
     public void add(DataType object) {
         DNode newNode = new DNode(object);
         if (head == null) {
@@ -18,12 +21,37 @@ public class DoublyLinkedList<DataType> extends List<DataType> {
         super.size++;
     }
 
-    //gets the data at the specified index efficiently based on node's location
+    public void sortedAdd(DataType childData) {
+        super.size++;
+        DNode newNode = new DNode(childData);
+        if (head == null) {
+            head = newNode;
+        }
+        else {
+            DNode traversalNode = (DNode) this.head;
+            while ((traversalNode != null) && (((DataType) traversalNode.getData()).compareTo(childData) < 0)) {
+                traversalNode = (DNode) traversalNode.getNextLink();
+            }
+            if (traversalNode == null) {
+                this.tail.setNextLink(newNode);
+                newNode.setPrevLink((DNode) this.tail);
+                this.tail = newNode;
+            }
+            else {
+                if (traversalNode.getPrevLink() != null) {
+                    traversalNode.getPrevLink().setNextLink(newNode);
+                    newNode.setPrevLink(traversalNode.getPrevLink());
+                }
+                newNode.setNextLink(traversalNode);
+                traversalNode.setPrevLink(newNode);
+            }
+        }
+    }
+
     public DataType get(int index) {
         return (DataType) getNode(index).getData();
     }
 
-    // gets the node at the specifed index
     private DNode getNode(int index) {
         if ((index >= super.size) || (index < 0)) throw new IndexOutOfBoundsException("Please enter a valid index!");
         if (index >= super.size) return null;
@@ -48,23 +76,27 @@ public class DoublyLinkedList<DataType> extends List<DataType> {
         return latest;
     }
 
-    //removes a node at specified element
-    public DNode remove(int index) {
-        assert(index >= 0);
-        if (index >= super.size) return null;
+    public DNode remove(DataType data) throws ElementNotFoundException {
+        DNode curNode = (DNode) this.head;
+        while ((curNode != null) && (!curNode.getData().equals(data)))
+            curNode = (DNode) curNode.getNextLink();
 
-        DNode current = getNode(index);
-
-        if (current.getPrevLink() != null) {
-            current.getPrevLink().setNextLink(current.getNextLink());
-            current.setPrevLink(null);
-        }
-        if (current.getNextLink() != null) {
-            ((DNode) current.getNextLink()).setPrevLink(current.getPrevLink());
-            current.setNextLink(null);
-        }
-
+        if (curNode == null) throw new ElementNotFoundException();
+        
+        if (curNode.getPrevLink() != null)
+            curNode.getPrevLink().setNextLink(curNode.getNextLink());
+        if (curNode.getNextLink() != null)
+            ((DNode) curNode.getNextLink()).setPrevLink(curNode.getPrevLink());
+        curNode.setNextLink(null);
+        curNode.setPrevLink(null);
+        
         super.size--;
-        return current;
+        return curNode;
+    }
+
+    public void reverseList() {
+        DNode temp = (DNode) this.head;
+        this.head = this.tail;
+        this.tail = temp;
     }
 }

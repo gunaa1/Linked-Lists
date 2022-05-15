@@ -1,8 +1,8 @@
 package array_based;
 
-import array_based.exceptions.InvalidSizeException;
-import array_based.exceptions.QueueOverflowException;
-import array_based.exceptions.ReductionRefactorException;
+import exceptions.InvalidSizeException;
+import exceptions.QueueOverflowException;
+import exceptions.ReductionRefactorException;
 
 public class Queue {
     // attributes

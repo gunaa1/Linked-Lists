@@ -1,4 +1,4 @@
-package array_based.exceptions;
+package exceptions;
 
 public class ReductionRefactorException extends Exception {
     // constructor

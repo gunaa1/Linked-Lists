@@ -1,6 +1,4 @@
-package array_based.exceptions;
-
-import java.util.Queue;
+package exceptions;
 
 public class QueueOverflowException extends Exception {
     //constructor

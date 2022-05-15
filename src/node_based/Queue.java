@@ -1,9 +1,12 @@
 package node_based;
 
+
+// Imports
 import node_based.nodes.SNode;
 
-public class Queue<DataType> extends List<DataType> {
-    //methods
+
+public class Queue<DataType> extends LinkedList<DataType> {
+    // ADT Methods
     public DataType poll() {
         if (super.size == 0) return null;
         DataType data = ((DataType) super.head.getData());
@@ -17,7 +20,8 @@ public class Queue<DataType> extends List<DataType> {
         return ((DataType) super.head.getData());
     }
 
-    //default print method
+    
+    // Default Methods
     @Override
     public String toString() {
         SNode node = head;

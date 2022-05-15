@@ -1,4 +1,4 @@
-package node_based.exceptions;
+package exceptions;
 
 public class DuplicateElementException extends Exception {
     //contructor
