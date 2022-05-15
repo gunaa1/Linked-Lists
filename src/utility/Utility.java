@@ -40,4 +40,15 @@ public class Utility {
         }
         return result;
     }
+
+    public static int[][] getStartingDistances(int[][] matrixA) {
+        int[][] newMatrix = new int[matrixA.length][matrixA[0].length];
+        for (int row = 0; row < matrixA.length; row++) {
+            for (int col = 0; col < matrixA[0].length; col++) {
+                if (matrixA[row][col] == 0) newMatrix[row][col] = Integer.MAX_VALUE;
+                else newMatrix[row][col] = matrixA[row][col];
+            }
+        }
+        return newMatrix;
+    }
 }

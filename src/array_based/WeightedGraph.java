@@ -1,15 +1,19 @@
 package array_based;
 
-import exceptions.NegativeWeightCycleException;
 
+// Imports
+import exceptions.NegativeWeightCycleException;
+import utility.Utility;
 import java.util.ArrayList;
 
+
 public class WeightedGraph {
-    // attributes
+    // Attributes
     private ArrayList<ArrayList<Integer>> adjList;
     private int[][] adjMatrix;
 
-    //contructor
+
+    // Contructors
     public WeightedGraph() {
         this.adjMatrix = new int[0][0];
     }
@@ -24,7 +28,8 @@ public class WeightedGraph {
         matrixToList(this.adjMatrix);
     }
 
-    // helper methods
+
+    // Helper Methods
     private void matrixToList(int[][] matrix) {
         ArrayList<ArrayList<Integer>> newAdjList = new ArrayList<ArrayList<Integer>>();
         for (int row = 0; row < matrix.length; row++) {
@@ -59,7 +64,8 @@ public class WeightedGraph {
         return nextVertexToVisit;
     }
 
-    // ADT
+
+    // ADT Methods
     public int[][] bellmanFord(int startV, int endV) throws NegativeWeightCycleException {
         int numOfVertices = this.adjMatrix.length;
         int[] prevVertex = new int[numOfVertices];
@@ -130,7 +136,7 @@ public class WeightedGraph {
     }
 
     public int[][] allPairsAlgorithm() {
-        int[][] temp = getModCopy(this.adjMatrix);
+        int[][] temp = Utility.getStartingDistances(this.adjMatrix);
         int numOfVertices = this.adjMatrix.length;
 
         for (int bride = 0; bride < numOfVertices; bride++) {
@@ -153,7 +159,7 @@ public class WeightedGraph {
 
     public int[] topologicalSort() {
         int[] order = new int[this.adjMatrix.length];
-        int[][] temp = getModCopy(this.adjMatrix);
+        int[][] temp = Utility.getStartingDistances(this.adjMatrix);
         int orderIndex = 0;
         for (int index = 0; index < temp.length; index++) {
             if (temp[index][0] == Integer.MIN_VALUE) continue;
@@ -171,54 +177,5 @@ public class WeightedGraph {
             }
         }
         return order;
-    }
-
-    private int[][] getModCopy(int[][] matrixA) {
-        int[][] newMatrix = new int[matrixA.length][matrixA[0].length];
-        for (int row = 0; row < matrixA.length; row++) {
-            for (int col = 0; col < matrixA[0].length; col++) {
-                if (matrixA[row][col] == 0) newMatrix[row][col] = Integer.MAX_VALUE;
-                else newMatrix[row][col] = matrixA[row][col];
-            }
-        }
-        return newMatrix;
-    }
-
-    private void print1DMatrix(int[] matrix, String matrixName) {
-        System.out.println(matrixName + ": ");
-        for(int i = 0; i < matrix.length; i++) {
-            System.out.print(matrix[i] + ", ");
-        }
-        System.out.println();
-        System.out.println();
-    }
-
-    private void print2DMatrix(int[][] matrix, String matrixName) {
-        System.out.println(matrixName + ": ");
-        for(int row = 0; row < matrix.length; row++) {
-            for (int col = 0; col < matrix[row].length; col++) {
-                System.out.print(matrix[row][col] + ", ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-    // testing
-    public static void main(String[] args) throws NegativeWeightCycleException {
-        int[][] weightedGraph = {
-                {0, -4, 0, 8, 0, 0, 0},
-                {0, 0, 8, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 9},
-                {0, 11, 0, 0, -1, -7, 0},
-                {0, 0, 0, 0, 0, 0, 10},
-                {0, 0, 2, 0, 6, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0}
-        };
-        WeightedGraph wg =  new WeightedGraph(weightedGraph);
-        wg.print1DMatrix(wg.topologicalSort(), "Topological Order");
-        wg.print2DMatrix(wg.dijkstraShortestPath(0, 6), "Dijkstra: Shortest Distances, Previous Vertices");
-        wg.print2DMatrix(wg.bellmanFord(0, 6), "Bellman Ford: Shortest Distances, Previous Vertices");
-        wg.print2DMatrix(wg.allPairsAlgorithm(), "All Pairs Algorithm");
     }
 }
