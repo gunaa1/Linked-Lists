@@ -2,8 +2,7 @@ package array_based;
 
 public class MinHeap extends Heap {
     @Override
-    public void bubbleUp() {
-        int curInd = this.addToIndex;
+    public void bubbleUp(int curInd) {
         while (curInd > 0) {
             int parentInd = getParent(curInd);
             if (heap[curInd] < heap[parentInd]) {
@@ -17,8 +16,7 @@ public class MinHeap extends Heap {
     }
 
     @Override
-    public void bubbleDown() {
-        int curInd = 0;
+    public void bubbleDown(int curInd) {
         while (curInd < addToIndex) {
             int smallerIndex = swapIndex(curInd);
             if (smallerIndex == -1) {

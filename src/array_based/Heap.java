@@ -1,19 +1,24 @@
 package array_based;
 
+
+// Imports
 import exceptions.NoElementsException;
 import exceptions.ReductionRefactorException;
 
-public abstract class Heap implements HeapMethods {
-    // attributes
+
+public abstract class Heap implements HeapInterface {
+    // Attributes
     protected int[] heap;
     private int size;
     protected int addToIndex;
 
-    // contructor
+
+    // Contructor
     public void Heap() {
         this.size = 0;
         this.addToIndex = 0;
     }
+
 
     public void Heap(int[] initialArr) {
         this.size = initialArr.length;
@@ -28,7 +33,7 @@ public abstract class Heap implements HeapMethods {
         }
     }
 
-    // base methods
+    // Helper Methods
     protected int getLeftChildIndex(int parentIndex) {
         return (2* parentIndex + 1);
     }
@@ -83,7 +88,7 @@ public abstract class Heap implements HeapMethods {
         }
 
         heap[addToIndex] = num;
-        bubbleUp();
+        bubbleUp(addToIndex);
 
         addToIndex++;
     }
@@ -95,7 +100,7 @@ public abstract class Heap implements HeapMethods {
 
         int toRemove = heap[0];
         swap(0, --addToIndex);
-        bubbleDown();
+        bubbleDown(0);
 
         if (addToIndex < (size / 2)) {
             halfSize();
@@ -115,11 +120,16 @@ public abstract class Heap implements HeapMethods {
         return false;
     }
 
+    public void update(int index) {
+        bubbleUp(index);
+        bubbleDown(index);
+    }
+
     // default methods
     public String toString() {
         String toPrint=  "Heap: ";
         for (int index = 0; index < addToIndex; index++) {
-            toPrint += heap[index] + "\t";
+            toPrint += heap[index] + " ";
         }
         toPrint += "\n";
         return toPrint;

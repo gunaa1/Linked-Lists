@@ -1,24 +1,28 @@
 package array_based;
 
+
+// Imports
 import exceptions.InvalidSizeException;
 import exceptions.QueueOverflowException;
 import exceptions.ReductionRefactorException;
 
+
 public class Queue {
-    // attributes
+    // Attributes
     private int topIndex = 0;
     private int endIndex = 0;
     private int maxSize = 0;
     private int size = 0;
     private int[] arr;
 
-    // constructor
+    // Constructor
     public Queue(int maxSize) {
         this.maxSize = maxSize;
         arr = new int[maxSize];
     }
 
-    // add a new item to queue
+
+    // ADT Methods
     public void add(int newElement) throws QueueOverflowException {
         if (isFull()) {
             throw new QueueOverflowException();
@@ -28,7 +32,6 @@ public class Queue {
         this.size++;
     }
 
-    // popping an item from the queue
     public int pop() {
         int returnInd = this.topIndex;
         this.topIndex = (this.topIndex + 1) % this.maxSize;
@@ -36,27 +39,22 @@ public class Queue {
         return arr[returnInd];
     }
 
-    // peeking at an item from the queue
     public int peek() {
         return arr[this.topIndex];
     }
 
-    // checking if empty
     public boolean isEmpty() {
         return (size == 0);
     }
 
-    // private method to check if full
     private boolean isFull() {
         return (size == maxSize);
     }
 
-    // returns the size of the queue
     public int size() {
         return this.size;
     }
 
-    // if given a valid refactor size, this function creates a new array of that size and moves all elements to new array
     public void setNewMaxSize(int newMaxSize) throws ReductionRefactorException, InvalidSizeException {
         if (newMaxSize < 0) {
             throw new InvalidSizeException();
